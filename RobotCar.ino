@@ -20,7 +20,7 @@ Adafruit_NeoPixel mybulb = Adafruit_NeoPixel (5, led2, NEO_RGB + NEO_KHZ800);
 #define ADDRESS_CBL 2           // second VCR
 
 // initialize to desired address
-uint8_t addressUs = ADDRESS_DVD;
+uint8_t addressUs = ADDRESS_VCR;
 
 //Reading the remote
 #define DEBUG 0  // comment out to turn off
