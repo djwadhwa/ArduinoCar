@@ -65,8 +65,6 @@ uint8_t addressUs = ADDRESS_DVD;
 
 #define MAXREST 20000 // longest we'll wait for a pulse
 
-// For those who don't remember, uint means unsigned integer. 16 means sixteen bits.
-// This variable is used to contain the 12 bits of the incoming message.
 uint16_t currentMessage = 0;
 uint8_t command = 0;	// command portion of message
 uint8_t previousCommand;	// holds last acted upon command
@@ -74,13 +72,7 @@ uint16_t address = 0;	// address portion of message
 
 #define HIGHP true
 #define LOWP false
-
-// DEFINE WHICH BUTTON ON THE REMOTE DOES WHAT
-// IMPORTANT - this section can be expanded to
-// add commands for anything else the user might
-// want, including throttle, gentle turning,
-// sounds, electronic counter measures for robot
-// competitions, whatever.
+//Remote Declerations
 #define MOTORS_STOP 37    	// 5 on remote
 #define MOTORS_FORWARD 1	// 2 on remote
 #define MOTORS_REVERSE 7	// 8 on remote
@@ -176,13 +168,7 @@ void loop()
 Color(r,g,b);
   }
 }
-//////////////////// HELPER METHODS //////////////////////////////
-// These are used by the loop() method above to do the work.
-// Notice one helper method can call another. Thus, the wait()
-// method is used to locate the start pulse as well as return the
-// duration of all other pulses. Also notice it can time out, meaning
-// no pulse is detected.
-////////////////////////////////////////////////////////////////////
+
 // wait until the pulse of type TYPE ends. returns -1 if timedout,
 // otherwise returns length of pulse
 int wait(boolean type, int timeout)
@@ -331,21 +317,21 @@ case MOTORS_SPINRIGHT:
       Serial.println("spin right");
 #endif
       spinRight();
-delay(50);
-  Color(255,0,255);
+      delay(50);
+      Color(255,0,255);
   break;
 
     case MOTORS_PIVOT_RIGHT_FORWARD:
       pivotRightForward();
-delay(70);
-Color(0,255,255);
-         break;
+      delay(70);
+      Color(0,255,255);
+    break;
 
     case MOTORS_PIVOT_LEFT_FORWARD:
       pivotLeftForward();
-delay(50);
-Color(0,255,255);
-       break;
+      delay(50);
+      Color(0,255,255);
+    break;
 
     case MOTORS_PIVOT_LEFT_REVERSE:
       pivotRightReverse();
@@ -399,7 +385,7 @@ case RPLUS:
   }
   previousCommand = command;
 }
-
+//Movement and maneuverability
 void reverse() {
   spinMotor(MOTORLEFT, MOTORCCW);
   spinMotor(MOTORRIGHT, MOTORCW);
@@ -483,6 +469,8 @@ void spinMotor(int motor, int dir){
       break;
   }
 }
+
+//audio for theme
 void playTheme() {
   play(NOTE_B4, 300);
   play(NOTE_D5, 300);
@@ -506,10 +494,12 @@ mybulb.setPixelColor(0, r,g,b);
 mybulb.show();
 myStrip.show();
 }
-
+//audio for reversing
 void reverseAudio (){
 play (NOTE_FS5,10);
 }
+
+//play functions to make writing audio methods easier.
 void play(int i, int time) {
   tone(soundPin, i, time);
   delay(time);
