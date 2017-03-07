@@ -6,6 +6,6 @@
 
 ###This bot was built over a period of 1 week and developed using the Arduino IDE and the C language.
 
-###The remote used is a Sony RM-VZ220 and controlles the robots movement, led colors and audio (associated with movement).
+###The remote used is a Sony RM-VZ220 and controls the robots movement, led colors and audio (associated with movement).
 
 
